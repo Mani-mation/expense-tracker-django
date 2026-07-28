@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<div class="container" style="max-width: 400px; padding-top: 100px;">
+    <div class="card">
+        <h2 class="display" style="font-size: 26px; margin-bottom: 4px;">Welcome back</h2>
+        <p style="color: var(--md-on-surface-muted); margin-bottom: 24px; font-size: 14px;">Log in to track your spending</p>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <label>{{ field.label }}</label>
+                {{ field }}
+            {% endfor %}
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px;">Log in</button>
+        </form>
+    </div>
+</div>
+
+<p style="text-align: center; margin-top: 18px; font-size: 14px; color: var(--md-on-surface-muted);">
+    New here? <a href="{% url 'signup' %}" style="color: var(--md-primary); font-weight: 600;">Create an account</a>
+</p>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Set Budget{% endblock %}
+{% block content %}
+<div class="topbar">
+    <span class="brand">💰 Expense Tracker</span>
+    <a href="{% url 'dashboard' %}" class="btn btn-ghost">← Back</a>
+</div>
+<div class="container" style="max-width: 480px;">
+    <div class="card">
+        <h2 class="display" style="font-size: 22px; margin-bottom: 4px;">Set your monthly budget</h2>
+        <p style="color: var(--md-on-surface-muted); font-size: 14px; margin-bottom: 20px;">This is used to calculate how much of your budget you've used this month.</p>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <label>{{ field.label }}</label>
+                {{ field }}
+            {% endfor %}
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px;">Save budget</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
