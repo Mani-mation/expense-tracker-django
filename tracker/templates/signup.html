@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Sign Up{% endblock %}
+{% block content %}
+<div class="container" style="max-width: 400px; padding-top: 80px;">
+    <div class="card">
+        <h2 class="display" style="font-size: 26px; margin-bottom: 4px;">Create account</h2>
+        <p style="color: var(--md-on-surface-muted); margin-bottom: 24px; font-size: 14px;">Start tracking your expenses</p>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <label>{{ field.label }}</label>
+                {{ field }}
+                {% if field.help_text %}
+                    <p style="font-size: 12px; color: var(--md-on-surface-muted); margin-top: -12px; margin-bottom: 16px;">{{ field.help_text }}</p>
+                {% endif %}
+                {% for error in field.errors %}
+                    <p style="font-size: 12px; color: var(--md-error); margin-top: -12px; margin-bottom: 16px;">{{ error }}</p>
+                {% endfor %}
+            {% endfor %}
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px;">Sign up</button>
+        </form>
+        <p style="text-align: center; margin-top: 18px; font-size: 14px; color: var(--md-on-surface-muted);">
+            Already have an account? <a href="{% url 'login' %}" style="color: var(--md-primary); font-weight: 600;">Log in</a>
+        </p>
+    </div>
+</div>
+{% endblock %}
